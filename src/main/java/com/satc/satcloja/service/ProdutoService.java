@@ -7,6 +7,7 @@ import com.satc.satcloja.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -15,6 +16,7 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository repository;
 
+    @Transactional
     public List<Produto> findProdutosAlugados() {
         List<Produto> alugados = repository.findAll(QProduto.produto.status.in(Status.ALUGADO, Status.DISPONIVEL));
         return alugados;
