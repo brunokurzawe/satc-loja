@@ -1,4 +1,4 @@
-package com.satc.satcloja.service;
+package com.satc.satcloja.resource;
 
 import com.satc.satcloja.model.Produto;
 import com.satc.satcloja.repository.ProdutoRepository;
