@@ -1,13 +1,15 @@
 package com.satc.satcloja.resource;
 
 import com.satc.satcloja.model.Produto;
-import com.satc.satcloja.repository.ProdutoRepository;
+import com.satc.satcloja.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
-import java.util.List;
 
 
 @RestController
@@ -15,23 +17,12 @@ import java.util.List;
 public class ProdutoController {
 
     @Autowired
-    private ProdutoRepository repository;
+    private ProdutoService service;
 
     @PostMapping
     public ResponseEntity create(@RequestBody Produto entity) {
-        Produto save = repository.save(entity);
-        return ResponseEntity.created(URI.create("/api/produtos/"+entity.getId())).body(save);
-    }
-
-    @GetMapping
-    public List<Produto> lista() {
-        return repository.findAll();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable(value = "id") Long id) {
-        repository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        Produto save = service.salvar(entity);
+        return ResponseEntity.created(URI.create("/api/produtos/" + entity.getId())).body(save);
     }
 }
 

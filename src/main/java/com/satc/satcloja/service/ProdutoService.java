@@ -13,7 +13,7 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository repository;
 
-    public Produto save(Produto entity) {
+    public Produto salvar(Produto entity) {
         return repository.save(entity);
     }
 
