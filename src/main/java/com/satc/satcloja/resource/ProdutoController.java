@@ -34,6 +34,12 @@ public class ProdutoController {
         Produto produto = service.buscaPorId(id);
         return ResponseEntity.ok(produto);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity remove(@PathVariable("id") Long id) {
+        service.remover(id);
+        return ResponseEntity.noContent().build();
+    }
 }
 
 
