@@ -32,16 +32,16 @@ public class BooleanBuilderUtil {
                     case "notEqual":
                         predicate.and(campoPath.ne(Expressions.constant(partes[2])));
                         break;
-                    case "maior":
+                    case "greater":
                         predicate.and(Expressions.booleanTemplate("{0} > {1}", campoPath, getTipo(tipoCampo, partes[2])));
                         break;
-                    case "menor":
+                    case "lesser":
                         predicate.and(Expressions.booleanTemplate("{0} < {1}", campoPath, getTipo(tipoCampo, partes[2])));
                         break;
-                    case "maiorigual":
+                    case "greaterequal":
                         predicate.and(Expressions.booleanTemplate("{0} >= {1}", campoPath, getTipo(tipoCampo, partes[2])));
                         break;
-                    case "menorigual":
+                    case "lesserequal":
                         predicate.and(Expressions.booleanTemplate("{0} <= {1}", campoPath, getTipo(tipoCampo, partes[2])));
                         break;
                     case "like":
