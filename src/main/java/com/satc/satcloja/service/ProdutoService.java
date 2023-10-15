@@ -1,6 +1,5 @@
 package com.satc.satcloja.service;
 
-import com.querydsl.core.types.Predicate;
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.enterprise.ValidationException;
 import com.satc.satcloja.model.Produto;
@@ -8,6 +7,8 @@ import com.satc.satcloja.model.QProduto;
 import com.satc.satcloja.repository.ProdutoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +36,12 @@ public class ProdutoService {
         return repository.save(entity);
     }
 
-    public List<Produto> buscaTodos(Predicate predicate) {
-        return repository.findAll(predicate);
+    public List<Produto> buscaTodos(String filter) {
+        return repository.findAll(filter, Produto.class);
+    }
+
+    public Page<Produto> buscaTodos(String filter, Pageable pageable) {
+        return repository.findAll(filter, Produto.class, pageable);
     }
 
     public Produto buscaPorId(Long id) {
@@ -46,7 +51,7 @@ public class ProdutoService {
     public Produto alterar(Long id, Produto entity) {
         Optional<Produto> existingProdutoOptional = repository.findById(id);
         if (existingProdutoOptional.isEmpty()) {
-            throw new NotFoundException("Produto não encontrado");
+            throw new NotFoundException("Produto não encontrado!");
         }
 
         Produto existingProduto = existingProdutoOptional.get();

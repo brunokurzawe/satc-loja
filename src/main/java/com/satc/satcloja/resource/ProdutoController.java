@@ -1,11 +1,14 @@
 package com.satc.satcloja.resource;
 
-import com.querydsl.core.BooleanBuilder;
-import com.satc.satcloja.enterprise.BooleanBuilderUtil;
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.model.Produto;
+import com.satc.satcloja.service.ProdutoDTO;
 import com.satc.satcloja.service.ProdutoService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,10 +31,13 @@ public class ProdutoController extends AbstractController {
     }
 
     @GetMapping
-    public ResponseEntity findAll(@RequestParam(required = false) String filter) {
-        BooleanBuilder booleanBuilder = BooleanBuilderUtil.buildPredicateFromFilter(filter, Produto.class);
-        List<Produto> produtos = service.buscaTodos(booleanBuilder);
-        return ResponseEntity.ok(produtos);
+    public ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                  @RequestParam(defaultValue = "0") int page,
+                                  @RequestParam(defaultValue = "10") int size) {
+        Page<Produto> produtos = service.buscaTodos(filter, PageRequest.of(page, size));
+        List<ProdutoDTO> produtoDTOS = ProdutoDTO.fromEntity(produtos.getContent());
+        Page<ProdutoDTO> produtosDTOPage = new PageImpl<>(produtoDTOS, produtos.getPageable(), produtos.getTotalElements());
+        return ResponseEntity.ok(produtosDTOPage);
     }
 
     @GetMapping("{id}")
