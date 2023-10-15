@@ -3,7 +3,6 @@ package com.satc.satcloja.resource;
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.model.Produto;
 import com.satc.satcloja.service.ProdutoService;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
