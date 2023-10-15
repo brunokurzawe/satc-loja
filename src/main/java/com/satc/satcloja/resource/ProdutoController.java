@@ -27,7 +27,6 @@ public class ProdutoController extends AbstractController {
         return ResponseEntity.created(URI.create("/api/produtos/" + entity.getId())).body(save);
     }
 
-    @ApiOperation(value = "Retorna uma lista de produtos")
     @GetMapping
     public ResponseEntity findAll(@RequestParam(required = false) String filter,
                                   @RequestParam(defaultValue = "0") int page,
