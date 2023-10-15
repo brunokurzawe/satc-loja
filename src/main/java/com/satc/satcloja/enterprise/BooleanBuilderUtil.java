@@ -58,6 +58,28 @@ public class BooleanBuilderUtil {
             }
         }
 
+        if (partes.length == 4) {
+            try {
+                Field campo = getFieldRecursivamente(classe, partes[0]);
+                campo.setAccessible(true);
+                Class<?> tipoCampo = campo.getType();
+                PathBuilder<?> campoPath = new PathBuilder<>(tipoCampo, campo.getName());
+
+                switch (partes[1].toLowerCase()) {
+                    case "between":
+                        predicate.and(Expressions.booleanTemplate("{0} >= {1} AND {0} <= {2}", campoPath, getTipo(tipoCampo, partes[2]), getTipo(tipoCampo, partes[3])));
+                        break;
+                    default:
+                        // Operador não suportado, trate conforme necessário
+                }
+
+            } catch (NoSuchFieldException e) {
+                // Campo não encontrado, trate conforme necessário
+            } catch (Exception e) {
+                // Acesso ilegal ao campo, trate conforme necessário
+            }
+        }
+
         return predicate;
     }
 
