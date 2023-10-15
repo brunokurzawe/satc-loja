@@ -1,7 +1,9 @@
-package com.satc.satcloja.service;
+package com.satc.satcloja.resource;
 
 import com.satc.satcloja.model.Produto;
 import com.satc.satcloja.model.Status;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,8 +14,6 @@ public class ProdutoDTO {
     private String nome;
     private String descricao;
     private Status status;
-
-    //Criem os Getters e Setters
 
     public Long getId() {
         return id;
@@ -67,6 +67,12 @@ public class ProdutoDTO {
 
     public static List<ProdutoDTO> fromEntity(List<Produto> produtos) {
         return produtos.stream().map(produto -> fromEntity(produto)).collect(Collectors.toList());
+    }
+
+    public static Page<ProdutoDTO> fromEntity(Page<Produto> produtos) {
+        List<ProdutoDTO> produtosFind = produtos.stream().map(produto -> fromEntity(produto)).collect(Collectors.toList());
+        Page<ProdutoDTO> produtosDTO = new PageImpl<>(produtosFind, produtos.getPageable(), produtos.getTotalElements());
+        return produtosDTO;
     }
 
 }
