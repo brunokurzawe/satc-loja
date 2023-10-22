@@ -27,10 +27,10 @@ public class BooleanBuilderUtil {
 
                 switch (partes[1].toLowerCase()) {
                     case "equal":
-                        predicate.and(campoPath.eq(Expressions.constant(partes[2])));
+                        predicate.and(Expressions.booleanTemplate("{0} = {1}", campoPath, getTipo(tipoCampo, partes[2])));
                         break;
                     case "notEqual":
-                        predicate.and(campoPath.ne(Expressions.constant(partes[2])));
+                        predicate.and(Expressions.booleanTemplate("{0} <> {1}", campoPath, getTipo(tipoCampo, partes[2])));
                         break;
                     case "greater":
                         predicate.and(Expressions.booleanTemplate("{0} > {1}", campoPath, getTipo(tipoCampo, partes[2])));
@@ -91,6 +91,8 @@ public class BooleanBuilderUtil {
             return Expressions.constant(Double.parseDouble(parte));
         } else if (tipoCampo == LocalDate.class) {
             return Expressions.constant(LocalDate.parse(parte));
+        } else if (tipoCampo.isEnum()) {
+            return Expressions.constant(Enum.valueOf((Class<Enum>) tipoCampo, parte));
         }
         return Expressions.constant(parte);
     }
