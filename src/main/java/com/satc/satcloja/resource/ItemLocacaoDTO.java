@@ -11,8 +11,6 @@ public class ItemLocacaoDTO {
     private Double quantidade;
     private Double desconto;
 
-    // Getters e Setters para os atributos
-
     public ProdutoDTO getProduto() {
         return produto;
     }
