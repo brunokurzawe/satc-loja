@@ -19,7 +19,7 @@ public class Locacao extends EntityId implements OperacaoFinanceira {
     private String endereco;
     @Column(name = "observacao")
     private String observacao;
-    @OneToMany(mappedBy = "locacao")
+    @OneToMany(mappedBy = "locacao", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<ItemLocacao> itens = new ArrayList<>();
 
     public LocalDate getDataLocacao() {
@@ -64,6 +64,10 @@ public class Locacao extends EntityId implements OperacaoFinanceira {
 
     public List<ItemLocacao> getItens() {
         return itens;
+    }
+
+    public void setItens(List<ItemLocacao> itens) {
+        itens.stream().forEach(itemLocacao -> addItemLocacao(itemLocacao));
     }
 
     public void addItemLocacao(ItemLocacao item) {

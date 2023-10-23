@@ -1,6 +1,5 @@
 package com.satc.satcloja.resource;
 
-import com.satc.satcloja.model.Produto;
 import com.satc.satcloja.model.Servico;
 import com.satc.satcloja.model.Status;
 import org.springframework.data.domain.Page;
