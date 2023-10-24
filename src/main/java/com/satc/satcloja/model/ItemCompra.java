@@ -1,5 +1,7 @@
 package com.satc.satcloja.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -21,6 +23,7 @@ public class ItemCompra extends EntityId {
 
     @ManyToOne
     @JoinColumn(name = "compra_id")
+    @JsonIgnore
     private Compra compra;
 
     public ItemCompra() {

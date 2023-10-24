@@ -1,8 +1,8 @@
 package com.satc.satcloja.service;
 
 import com.satc.satcloja.enterprise.NotFoundException;
-import com.satc.satcloja.model.Locacao;
-import com.satc.satcloja.repository.LocacaoRepository;
+import com.satc.satcloja.model.Compra;
+import com.satc.satcloja.repository.CompraRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,36 +13,37 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LocacaoService {
+public class CompraService {
+
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    private LocacaoRepository repository;
+    private CompraRepository repository;
 
-    public Locacao salvar(Locacao entity) {
+    public Compra salvar(Compra entity) {
         return repository.save(entity);
     }
 
-    public List<Locacao> buscaTodos(String filter) {
-        return repository.findAll(filter, Locacao.class);
+    public List<Compra> buscaTodos(String filter) {
+        return repository.findAll(filter, Compra.class);
     }
 
-    public Page<Locacao> buscaTodos(String filter, Pageable pageable) {
-        return repository.findAll(filter, Locacao.class, pageable);
+    public Page<Compra> buscaTodos(String filter, Pageable pageable) {
+        return repository.findAll(filter, Compra.class, pageable);
     }
 
-    public Locacao buscaPorId(Long id) {
+    public Compra buscaPorId(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public Locacao alterar(Long id, Locacao entity) {
-        Optional<Locacao> existingOptional = repository.findById(id);
+    public Compra alterar(Long id, Compra entity) {
+        Optional<Compra> existingOptional = repository.findById(id);
         if (existingOptional.isEmpty()) {
-            throw new NotFoundException("Produto não encontrado!");
+            throw new NotFoundException("Compra não encontrado!");
         }
 
-        Locacao existingServico = existingOptional.get();
+        Compra existingServico = existingOptional.get();
 
         modelMapper.map(entity, existingServico);
 
@@ -53,4 +54,3 @@ public class LocacaoService {
         repository.deleteById(id);
     }
 }
-

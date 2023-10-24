@@ -15,7 +15,7 @@ public class Compra extends EntityId implements OperacaoFinanceira {
     private Fornecedor fornecedor;
     @Column(name = "observacao")
     private String observacao;
-    @OneToMany(mappedBy = "compra")
+    @OneToMany(mappedBy = "compra", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<ItemCompra> itens = new ArrayList<>();
 
     public LocalDate getDataCompra() {
@@ -44,6 +44,10 @@ public class Compra extends EntityId implements OperacaoFinanceira {
 
     public List<ItemCompra> getItens() {
         return itens;
+    }
+
+    public void setItens(List<ItemCompra> itens) {
+        itens.stream().forEach(itemCompra -> addItemCompra(itemCompra));
     }
 
     public void addItemCompra(ItemCompra item) {
