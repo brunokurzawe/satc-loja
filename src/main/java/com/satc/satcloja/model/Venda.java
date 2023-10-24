@@ -62,6 +62,10 @@ public class Venda extends EntityId implements OperacaoFinanceira {
         this.itens.remove(item);
     }
 
+    public void setItens(List<ItemVenda> itens) {
+        itens.stream().forEach(itemVenda -> addItemVenda(itemVenda));
+    }
+
     public List<ItemVenda> getItens() {
         return itens;
     }

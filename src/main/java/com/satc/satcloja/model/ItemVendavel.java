@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_item")
-public abstract class ItemVendavel extends EntityId {
+public class ItemVendavel extends EntityId {
 
     @Column(name = "descricao")
     private String descricao;
