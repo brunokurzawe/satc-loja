@@ -1,8 +1,7 @@
-package com.satc.satcloja.resource;
+package com.satc.satcloja.resource.representation;
 
 import com.satc.satcloja.model.FormaPagamento;
 import com.satc.satcloja.model.Venda;
-import com.satc.satcloja.resource.representation.ClienteDTO;
 
 import java.time.LocalDate;
 import java.util.List;
