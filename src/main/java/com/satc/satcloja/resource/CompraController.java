@@ -2,6 +2,7 @@ package com.satc.satcloja.resource;
 
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.model.Compra;
+import com.satc.satcloja.resource.representation.CompraDTO;
 import com.satc.satcloja.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

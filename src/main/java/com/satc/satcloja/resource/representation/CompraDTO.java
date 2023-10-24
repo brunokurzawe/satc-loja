@@ -1,10 +1,11 @@
-package com.satc.satcloja.resource;
+package com.satc.satcloja.resource.representation;
 
 import com.satc.satcloja.model.Compra;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 

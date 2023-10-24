@@ -2,6 +2,7 @@ package com.satc.satcloja.resource;
 
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.model.Locacao;
+import com.satc.satcloja.resource.representation.LocacaoDTO;
 import com.satc.satcloja.service.LocacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

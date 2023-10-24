@@ -2,6 +2,7 @@ package com.satc.satcloja.resource;
 
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.model.Servico;
+import com.satc.satcloja.resource.representation.ServicoDTO;
 import com.satc.satcloja.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

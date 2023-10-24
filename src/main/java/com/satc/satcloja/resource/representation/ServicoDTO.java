@@ -1,4 +1,4 @@
-package com.satc.satcloja.resource;
+package com.satc.satcloja.resource.representation;
 
 import com.satc.satcloja.model.Servico;
 import com.satc.satcloja.model.Status;

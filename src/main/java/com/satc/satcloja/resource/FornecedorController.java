@@ -2,6 +2,7 @@ package com.satc.satcloja.resource;
 
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.model.Fornecedor;
+import com.satc.satcloja.resource.representation.FornecedorDTO;
 import com.satc.satcloja.service.FornecedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
