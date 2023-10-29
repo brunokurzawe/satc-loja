@@ -40,7 +40,6 @@ public class RateLimitInterceptor extends HandlerInterceptorAdapter {
     }
 
     private String getClientId(HttpServletRequest request) {
-        System.out.println(request.getRemoteAddr());
         return request.getRemoteAddr();
     }
 }

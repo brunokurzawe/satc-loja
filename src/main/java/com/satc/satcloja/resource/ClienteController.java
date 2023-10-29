@@ -37,6 +37,7 @@ public class ClienteController extends AbstractController {
 
     @GetMapping("{id}")
     public ResponseEntity findById(@PathVariable("id") Long id) {
+        System.out.println("(CONTROLER) Buscando cliente por id: " + id);
         Cliente produto = service.buscaPorId(id);
         return ResponseEntity.ok(produto);
     }

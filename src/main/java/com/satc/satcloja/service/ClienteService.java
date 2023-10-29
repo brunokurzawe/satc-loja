@@ -5,6 +5,7 @@ import com.satc.satcloja.model.Cliente;
 import com.satc.satcloja.repository.ClienteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,9 @@ public class ClienteService {
         return repository.findAll(filter, Cliente.class, pageable);
     }
 
+    @Cacheable(value = "clienteIdCache", key = "#id")
     public Cliente buscaPorId(Long id) {
+        System.out.println("(BANCO) Buscando cliente por id: " + id);
         return repository.findById(id).orElse(null);
     }
 
