@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LocacaoDTO {
+    private Long id;
     private LocalDate dataLocacao;
     private LocalDate dataDevolucao;
     private ClienteDTO cliente;
@@ -17,6 +18,15 @@ public class LocacaoDTO {
     private List<ItemLocacaoDTO> itens;
 
     // Getters e Setters para os atributos
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public LocalDate getDataLocacao() {
         return dataLocacao;
@@ -69,6 +79,7 @@ public class LocacaoDTO {
     // Métodos para conversão
     public static LocacaoDTO fromEntity(Locacao locacao) {
         LocacaoDTO dto = new LocacaoDTO();
+        dto.setId(locacao.getId());
         dto.setDataLocacao(locacao.getDataLocacao());
         dto.setDataDevolucao(locacao.getDataDevolucao());
         dto.setCliente(ClienteDTO.fromEntity(locacao.getCliente()));

@@ -67,6 +67,8 @@ public class Locacao extends EntityId implements OperacaoFinanceira {
     }
 
     public void setItens(List<ItemLocacao> itens) {
+
+        this.itens.clear();
         itens.stream().forEach(itemLocacao -> addItemLocacao(itemLocacao));
     }
 

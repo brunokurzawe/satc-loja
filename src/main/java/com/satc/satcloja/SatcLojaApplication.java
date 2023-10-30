@@ -42,10 +42,10 @@ public class SatcLojaApplication {
     @Bean
     public JedisConnectionFactory jedisConnectionFactory() {
         RedisStandaloneConfiguration redisConfig = new RedisStandaloneConfiguration();
-        redisConfig.setHostName("oregon-redis.render.com");
+        redisConfig.setHostName("xxxxx");
         redisConfig.setPort(6379);
-        redisConfig.setPassword("ZO8w8y9nTNPTIcFtH34Xqn02Ks88tPsj");
-        redisConfig.setUsername("red-ckv5pga37rbc73es4hhg");
+        redisConfig.setPassword("xxxxx");
+        redisConfig.setUsername("xxxxx");
         JedisClientConfiguration.JedisClientConfigurationBuilder jedisClientConfig = JedisClientConfiguration.builder();
         jedisClientConfig.connectTimeout(Duration.ofSeconds(60));
         jedisClientConfig.useSsl();
