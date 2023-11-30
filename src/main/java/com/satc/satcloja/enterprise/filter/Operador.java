@@ -1,4 +1,4 @@
-package com.satc.satcloja.enterprise;
+package com.satc.satcloja.enterprise.filter;
 
 import java.util.HashMap;
 import java.util.Map;

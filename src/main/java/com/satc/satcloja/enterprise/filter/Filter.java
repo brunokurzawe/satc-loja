@@ -1,4 +1,4 @@
-package com.satc.satcloja.resource.representation;
+package com.satc.satcloja.enterprise.filter;
 
 import java.util.ArrayList;
 import java.util.List;
