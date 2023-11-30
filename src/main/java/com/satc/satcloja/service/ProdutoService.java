@@ -36,6 +36,10 @@ public class ProdutoService {
         return repository.save(entity);
     }
 
+    public List<Produto> buscaTodos() {
+        return repository.findAll();
+    }
+
     public List<Produto> buscaTodos(String filter) {
         return repository.findAll(filter, Produto.class);
     }

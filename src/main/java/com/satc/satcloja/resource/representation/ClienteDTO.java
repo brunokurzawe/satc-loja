@@ -1,13 +1,19 @@
 package com.satc.satcloja.resource.representation;
 
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.dsl.StringPath;
 import com.satc.satcloja.model.Cliente;
+import com.satc.satcloja.model.QCliente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ClienteDTO {
+public class ClienteDTO extends AbstractDTO {
     private Long id;
     private String nome;
     private String telefone;
@@ -83,5 +89,15 @@ public class ClienteDTO {
     public static Page<ClienteDTO> fromEntity(Page<Cliente> clientes) {
         List<ClienteDTO> clientesFind = clientes.stream().map(ClienteDTO::fromEntity).collect(Collectors.toList());
         return new PageImpl<>(clientesFind, clientes.getPageable(), clientes.getTotalElements());
+    }
+
+    @Override
+    public Map<String, Path> expressions() {
+        Map<String, Path> expressions = new HashMap<>();
+        expressions.put("id", QCliente.cliente.id);
+        expressions.put("nome", QCliente.cliente.nome);
+        expressions.put("cidade.id", QCliente.cliente.id);
+        expressions.put("telefone", QCliente.cliente.telefone);
+        return expressions;
     }
 }
