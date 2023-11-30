@@ -36,13 +36,16 @@ public class Filter {
         List<Filter> filters = new ArrayList<>();
 
         if (filterQueryString != null && !filterQueryString.isEmpty()) {
-            String[] filterParams = filterQueryString.split("\\+");
-            for (int i = 0; i < filterParams.length; i += 3) {
-                Filter filter = new Filter();
-                filter.setPropriedade(filterParams[i]);
-                filter.setOperador(filterParams[i + 1]);
-                filter.setValor(filterParams[i + 2]);
-                filters.add(filter);
+            String[] conditions = filterQueryString.split("\\+and\\+");
+            for (String condition : conditions) {
+                String[] filterParams = condition.split("\\+");
+                if (filterParams.length == 3) {
+                    Filter filter = new Filter();
+                    filter.setPropriedade(filterParams[0]);
+                    filter.setOperador(filterParams[1]);
+                    filter.setValor(filterParams[2]);
+                    filters.add(filter);
+                }
             }
         }
 
