@@ -13,16 +13,23 @@ import java.util.List;
 
 public class PredicateBuilder {
 
-    public static Predicate buildPredicateFromFilter(AbstractDTO dto, String filter) {
-        List<Filter> filters = Filter.fromQueryString(filter);
-        BooleanBuilder predicate = new BooleanBuilder();
-        filters.stream().forEach(fil -> {
-            Path path = dto.expressions().get(fil.getPropriedade());
-            PathBuilder<Object> campoPath = new PathBuilder<>(path.getType(), path.getMetadata());
-            predicate.and(Expressions.booleanTemplate(Operador.of(fil.getOperador()).getExpression(), campoPath, getTipo(campoPath.getType(), fil.getValor())));
-        });
-        System.out.println(predicate);
-        return predicate;
+    public static Predicate buildPredicateFromFilter(Class classe, String filter) {
+        try {
+            Class<AbstractDTO> abDto = (Class<AbstractDTO>) Class.forName("com.satc.satcloja.resource.representation." + classe.getSimpleName() + "DTO");
+            AbstractDTO dto = abDto.newInstance();
+            List<Filter> filters = Filter.fromQueryString(filter);
+            BooleanBuilder predicate = new BooleanBuilder();
+            filters.stream().forEach(fil -> {
+                Path path = dto.expressions().get(fil.getPropriedade());
+                PathBuilder<Object> campoPath = new PathBuilder<>(path.getType(), path.getMetadata());
+                predicate.and(Expressions.booleanTemplate(Operador.of(fil.getOperador()).getExpression(), campoPath, getTipo(campoPath.getType(), fil.getValor())));
+            });
+            System.out.println(predicate);
+            return predicate;
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            System.out.println("Não foi possível encontrar a classe DTO");
+            return new BooleanBuilder();
+        }
     }
 
     static Expression getTipo(Class<?> tipoCampo, String parte) {

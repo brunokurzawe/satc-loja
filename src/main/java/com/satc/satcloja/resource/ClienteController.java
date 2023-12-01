@@ -1,5 +1,6 @@
 package com.satc.satcloja.resource;
 
+import com.querydsl.core.types.Path;
 import com.satc.satcloja.enterprise.NotFoundException;
 import com.satc.satcloja.model.Cliente;
 import com.satc.satcloja.repository.ClienteRepository;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -33,7 +35,7 @@ public class ClienteController extends AbstractController {
     public ResponseEntity findAll(@RequestParam(required = false) String filter,
                                   @RequestParam(defaultValue = "0") int page,
                                   @RequestParam(defaultValue = "10") int size) {
-        List<Cliente> all = repository.findAll(new ClienteDTO(), filter);
+        List<Cliente> all = repository.findAll(Cliente.class, filter);
         return ResponseEntity.ok(all);
     }
 
